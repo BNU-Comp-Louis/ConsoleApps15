@@ -12,7 +12,7 @@ namespace ConsoleAppProject
     /// Louis Symons 02/02/21
     /// </summary>
     public static class Program
-    {
+    { 
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -32,4 +32,5 @@ namespace ConsoleAppProject
             "---------------------\n";
         }
     }
+    
 }
