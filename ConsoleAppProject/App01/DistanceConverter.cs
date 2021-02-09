@@ -17,6 +17,8 @@ namespace ConsoleAppProject.App01
 
         private const String MILES = "miles";
 
+        private const String FEET = "feet";
+
         private const String QUIT = "quit";
 
         /// <summary>
@@ -56,8 +58,15 @@ namespace ConsoleAppProject.App01
                     InputMiles();               
                     CalculateFeet();
                     ConvertMilesToFeet();
-                    PrintResults();
+                    PrintMilesResults();
                     break;
+                case FEET:
+                    InputFeet();
+                    CalculateMiles();
+                    ConvertFeettoMiles();
+                    PrintFeetResults();
+                    break;
+                
                 default:
                     Console.WriteLine("Menu choice not found!");
                     break;
@@ -87,11 +96,20 @@ namespace ConsoleAppProject.App01
            return  (miles * 5280);
         }
 
-        private void PrintResults()
+        private double ConvertFeettoMiles()
+        {
+            return (feet / 5280);
+        }
+
+        private void PrintMilesResults()
         {
             Console.WriteLine(miles + " Miles is: " + feet + " feet");
         }
 
+        private void PrintFeetResults()
+        {
+            Console.WriteLine(feet + " Feet is: " + miles + " Miles");
+        }
 
         ///<summary>
         ///
@@ -104,6 +122,13 @@ namespace ConsoleAppProject.App01
             miles = Convert.ToDouble(value);
         }
 
+        private void InputFeet()
+        {
+            Console.WriteLine("Please Enter the number of Feet >");
+            string value = Console.ReadLine();
+            feet = Convert.ToDouble(value);
+        }
+
         ///<summary>
         ///
         ///<summary>
@@ -111,6 +136,11 @@ namespace ConsoleAppProject.App01
         private void CalculateFeet()
         {
             feet = miles * 5280;
+        }
+
+        private void CalculateMiles()
+        {
+            miles = feet / 5280;
         }
 
         ///<summary>
