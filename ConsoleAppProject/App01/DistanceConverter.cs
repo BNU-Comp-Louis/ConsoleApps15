@@ -15,7 +15,7 @@ namespace ConsoleAppProject.App01
 
         private double feet;
 
-        private const String Miles = "miles";
+        private const String MILES = "miles";
 
         private const String QUIT = "quit";
 
@@ -28,7 +28,6 @@ namespace ConsoleAppProject.App01
             miles = 0;
             feet = 0;
 
-            PrintMenuItems();
             OutputHeading();
         }
 
@@ -53,10 +52,11 @@ namespace ConsoleAppProject.App01
         {
             switch (choice)
             {
-                case Miles:
-                    PrintMilesHeading();
-                    GetMiles();
+                case MILES:
+                    InputMiles();               
+                    CalculateFeet();
                     ConvertMilesToFeet();
+                    PrintResults();
                     break;
                 default:
                     Console.WriteLine("Menu choice not found!");
@@ -67,7 +67,7 @@ namespace ConsoleAppProject.App01
 
         public String GetString()
         {
-            Console.WriteLine("> ");         // print prompt
+            Console.WriteLine("Type one of the menu options to select ");         // print prompt
             String inputLine = Console.ReadLine();
 
             return inputLine;
@@ -78,13 +78,8 @@ namespace ConsoleAppProject.App01
 
         public double GetMiles()
         {
-            Console.WriteLine("Please Input the Measurement for conversion: ");
+            Console.WriteLine("...");
             return Convert.ToDouble(Console.ReadLine());
-        }
-
-        private void PrintMilesHeading()
-        {
-            Console.WriteLine("Please Enter the value of Miles");
         }
 
         private double ConvertMilesToFeet()
@@ -122,10 +117,6 @@ namespace ConsoleAppProject.App01
         ///
         ///<summary>
         
-        private void OutputFeet()
-        {
-            Console.WriteLine(miles + " miles is " + feet + " feet!");
-        }
 
         private void OutputHeading()
         {
@@ -140,7 +131,7 @@ namespace ConsoleAppProject.App01
 
         private void PrintMenuItems()
         {
-            Console.WriteLine("Please select the unit you want to convert");
+            Console.WriteLine("\nPlease select the unit you want to convert");
             Console.WriteLine("(Miles)");
             Console.WriteLine("(Feet)");
             Console.WriteLine("(Metres)");
