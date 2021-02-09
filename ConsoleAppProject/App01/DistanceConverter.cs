@@ -26,9 +26,9 @@ namespace ConsoleAppProject.App01
         private const String METERS = "meters";
 
         /// <summary>
-        /// 
+        /// Constructor of the class to set values of constants and print 
+        /// Heading for the user.
         /// </summary>
-
         public DistanceConverter()
         {
             miles = 0;
@@ -38,6 +38,9 @@ namespace ConsoleAppProject.App01
             OutputHeading();
         }
 
+        /// <summary>
+        /// Method to check the user input and pass to the switch case.
+        /// </summary>
          public void Run()
         {
             Boolean finished = false; 
@@ -55,6 +58,10 @@ namespace ConsoleAppProject.App01
 
         }
 
+        /// <summary>
+        /// Switch case to process the users inputs.
+        /// </summary>
+        /// <param name="choice"></param>
         private void ProcessChoice(String choice)
         {
             switch (choice)
@@ -84,6 +91,11 @@ namespace ConsoleAppProject.App01
             }
         }
 
+        /// <summary>
+        /// Provides a message to the use to prompt a input based on menu items.
+        /// Reads the Input that the user provides.
+        /// </summary>
+        /// <returns></returns>
         public String GetString()
         {
             Console.WriteLine("Type one of the menu options to select ");         // print prompt
@@ -92,48 +104,60 @@ namespace ConsoleAppProject.App01
             return inputLine;
         }
 
-
-
-
-        public double GetMiles()
-        {
-            Console.WriteLine("...");
-            return Convert.ToDouble(Console.ReadLine());
-        }
-
+        /// <summary>
+        /// Convert miles to feet
+        /// </summary>
+        /// <returns></returns>
         private double ConvertMilesToFeet()
         {
            return  (miles * 5280);
         }
 
+        /// <summary>
+        /// Convert feet to miles
+        /// </summary>
+        /// <returns></returns>
         private double ConvertFeettoMiles()
         {
             return (feet / 5280);
         }
 
+        /// <summary>
+        /// Convert meters to miles
+        /// </summary>
+        /// <returns></returns>
         private double ConvertMeterstoMiles()
         {
             return (miles * 1609.34);
         }
 
+        /// <summary>
+        /// Print results
+        /// </summary>
         private void PrintMilesResults()
         {
             Console.WriteLine(miles + " Miles is: " + feet + " Feet");
         }
 
+        /// <summary>
+        /// Print results
+        /// </summary>
         private void PrintFeetResults()
         {
             Console.WriteLine(feet + " Feet is: " + miles + " Miles");
         }
 
+        /// <summary>
+        /// Print results
+        /// </summary>
         private void PrintMetersResults()
         {
             Console.WriteLine(miles + " Miles is: " + meters + " Meters");
         }
+
         ///<summary>
-        ///
+        /// Reads user Input for for miles and converts it to doulbe. 
         ///<summary>
-        
         private void InputMiles()
         {
             Console.Write("Please enter the number of miles >");
@@ -141,6 +165,9 @@ namespace ConsoleAppProject.App01
             miles = Convert.ToDouble(value);
         }
 
+        /// <summary>
+        /// Reads user Input for for miles and converts it to doulbe. 
+        /// </summary>
         private void InputFeet()
         {
             Console.WriteLine("Please Enter the number of Feet >");
@@ -148,6 +175,9 @@ namespace ConsoleAppProject.App01
             feet = Convert.ToDouble(value);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void InputMeters()
         {
             Console.WriteLine("Please Enter the number of Miles >");
