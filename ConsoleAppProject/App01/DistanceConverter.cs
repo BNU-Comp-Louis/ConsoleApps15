@@ -15,11 +15,15 @@ namespace ConsoleAppProject.App01
 
         private double feet;
 
+        private double meters;
+
         private const String MILES = "miles";
 
         private const String FEET = "feet";
 
         private const String QUIT = "quit";
+
+        private const String METERS = "meters";
 
         /// <summary>
         /// 
@@ -29,6 +33,7 @@ namespace ConsoleAppProject.App01
         {
             miles = 0;
             feet = 0;
+            meters = 0;
 
             OutputHeading();
         }
@@ -66,7 +71,12 @@ namespace ConsoleAppProject.App01
                     ConvertFeettoMiles();
                     PrintFeetResults();
                     break;
-                
+                case METERS:
+                    InputMeters();
+                    CalculateMeters();
+                    ConvertMeterstoMiles();
+                    PrintMetersResults();
+                    break;
                 default:
                     Console.WriteLine("Menu choice not found!");
                     break;
@@ -101,9 +111,14 @@ namespace ConsoleAppProject.App01
             return (feet / 5280);
         }
 
+        private double ConvertMeterstoMiles()
+        {
+            return (miles * 1609.34);
+        }
+
         private void PrintMilesResults()
         {
-            Console.WriteLine(miles + " Miles is: " + feet + " feet");
+            Console.WriteLine(miles + " Miles is: " + feet + " Feet");
         }
 
         private void PrintFeetResults()
@@ -111,6 +126,10 @@ namespace ConsoleAppProject.App01
             Console.WriteLine(feet + " Feet is: " + miles + " Miles");
         }
 
+        private void PrintMetersResults()
+        {
+            Console.WriteLine(miles + " Miles is: " + meters + " Meters");
+        }
         ///<summary>
         ///
         ///<summary>
@@ -129,6 +148,12 @@ namespace ConsoleAppProject.App01
             feet = Convert.ToDouble(value);
         }
 
+        private void InputMeters()
+        {
+            Console.WriteLine("Please Enter the number of Miles >");
+            string value = Console.ReadLine();
+            miles = Convert.ToDouble(value);
+        }
         ///<summary>
         ///
         ///<summary>
@@ -141,6 +166,11 @@ namespace ConsoleAppProject.App01
         private void CalculateMiles()
         {
             miles = feet / 5280;
+        }
+
+        private void CalculateMeters()
+        {
+            meters = miles * 1609.34;
         }
 
         ///<summary>
