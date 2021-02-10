@@ -176,7 +176,7 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
-        /// 
+        /// Reads user Input for for miles and converts it to doulbe. 
         /// </summary>
         private void InputMeters()
         {
@@ -185,7 +185,7 @@ namespace ConsoleAppProject.App01
             miles = Convert.ToDouble(value);
         }
         ///<summary>
-        ///
+        /// Calculation for feet to miles.
         ///<summary>
         
         private void CalculateFeet()
@@ -193,21 +193,25 @@ namespace ConsoleAppProject.App01
             feet = miles * 5280;
         }
 
+        /// <summary>
+        /// Calculation for miles to feet
+        /// </summary>
         private void CalculateMiles()
         {
             miles = feet / 5280;
         }
 
+        /// <summary>
+        /// Calculation for meters to miles.
+        /// </summary>
         private void CalculateMeters()
         {
             meters = miles * 1609.34;
         }
-
-        ///<summary>
-        ///
-        ///<summary>
         
-
+        /// <summary>
+        /// Print method for a heading of the app
+        /// </summary>
         private void OutputHeading()
         {
             Console.WriteLine();
@@ -216,9 +220,11 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("      By Louis Symons       ");
             Console.WriteLine(" -------------------------- ");
             Console.WriteLine();
-            
         }   
 
+        /// <summary>
+        /// Print method for menu items for the user to select.
+        /// </summary>
         private void PrintMenuItems()
         {
             Console.WriteLine("\nPlease select the unit you want to convert");
