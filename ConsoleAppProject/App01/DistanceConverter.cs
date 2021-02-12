@@ -16,7 +16,7 @@ namespace ConsoleAppProject.App01
         private double feet;
 
         private double meters;
-
+        
         private const String MILES = "miles";
 
         private const String FEET = "feet";
@@ -24,6 +24,8 @@ namespace ConsoleAppProject.App01
         private const String QUIT = "quit";
 
         private const String METERS = "meters";
+
+
 
         /// <summary>
         /// Constructor of the class to set values of constants and print 
@@ -216,7 +218,7 @@ namespace ConsoleAppProject.App01
         {
             Console.WriteLine();
             Console.WriteLine(" -------------------------- ");
-            Console.WriteLine("   Convert Miles to Feet    ");
+            Console.WriteLine("     Distance Converter    ");
             Console.WriteLine("      By Louis Symons       ");
             Console.WriteLine(" -------------------------- ");
             Console.WriteLine();
