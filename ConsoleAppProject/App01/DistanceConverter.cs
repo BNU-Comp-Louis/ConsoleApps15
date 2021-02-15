@@ -54,6 +54,13 @@ namespace ConsoleAppProject.App01
         {
             OutputHeading();
 
+            Boolean finished = false;
+
+            while (!finished)
+            {
+                fromUnit = null;
+                toUnit = null;
+
             fromUnit = SelectUnit(" Please select the from distance unit >");
 
             toUnit = SelectUnit(" Please select the to distance unit >");
@@ -65,6 +72,25 @@ namespace ConsoleAppProject.App01
             CalculateDistance();
 
             OutputDistance();
+
+                finished = QuitApplication();
+            }
+
+            Console.WriteLine("Application Finshed");
+        }
+
+        private bool QuitApplication()
+        {
+            Console.WriteLine("\nDo you want to quit application?");
+            string choice = Console.ReadLine().ToLower();
+            if (choice == "y")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
@@ -78,9 +104,19 @@ namespace ConsoleAppProject.App01
         {
             string choice = DisplayChoices(prompt);
 
-            string unit = ExecuteChoice(choice);
+            string unit = GetChoice(choice);
 
+            if(Equals(unit, "Invalid choice"))
+            {
+                Console.WriteLine("Invalid choice");
+                unit =  SelectUnit(prompt);
+
+            }
+            else
+            {
             Console.WriteLine($"\n You have selected {unit}");
+
+            }
 
             return unit;
         }
@@ -90,22 +126,20 @@ namespace ConsoleAppProject.App01
         /// </summary>
         /// <param name="choice"></param>
         /// <returns></returns>
-        private static string ExecuteChoice(string choice)
+        private static string GetChoice(string choice)
         {
-            if (choice.Equals("1"))
+            
+            switch (choice)
             {
-                return FEET;
-            }
-            else if (choice == "2")
-            {
-                return METRES;
-            }
-            else if (choice.Equals("3"))
-            {
-                return MILES;
-            }
+                case "1": return FEET; 
+                    
+                case "2": return METRES; 
+                    
+                case "3": return MILES;
+                    
+                default: return "Invalid choice";
 
-            return null;
+            }   
         }
 
         /// <summary>
