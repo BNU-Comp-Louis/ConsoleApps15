@@ -61,17 +61,17 @@ namespace ConsoleAppProject.App01
                 fromUnit = null;
                 toUnit = null;
 
-            fromUnit = SelectUnit(" Please select the from distance unit >");
+                fromUnit = SelectUnit(" Please select the from distance unit >");
 
-            toUnit = SelectUnit(" Please select the to distance unit >");
+                toUnit = SelectUnit(" Please select the to distance unit >");
 
-            Console.WriteLine($"\n Converting {fromUnit} to {toUnit}");
+                Console.WriteLine($"\n Converting {fromUnit} to {toUnit}");
 
-            fromDistance = InputDistance($" Please enter the number of {fromUnit} > ");
+                fromDistance = InputDistance($" Please enter the number of {fromUnit} > ");
 
-            CalculateDistance();
+                CalculateDistance();
 
-            OutputDistance();
+                OutputDistance();
 
                 finished = QuitApplication();
             }
@@ -106,15 +106,15 @@ namespace ConsoleAppProject.App01
 
             string unit = GetChoice(choice);
 
-            if(Equals(unit, "Invalid choice"))
+            if (Equals(unit, "Invalid choice"))
             {
                 Console.WriteLine("Invalid choice");
-                unit =  SelectUnit(prompt);
+                unit = SelectUnit(prompt);
 
             }
             else
             {
-            Console.WriteLine($"\n You have selected {unit}");
+                Console.WriteLine($"\n You have selected {unit}");
 
             }
 
@@ -128,18 +128,18 @@ namespace ConsoleAppProject.App01
         /// <returns></returns>
         private static string GetChoice(string choice)
         {
-            
+
             switch (choice)
             {
-                case "1": return FEET; 
-                    
-                case "2": return METRES; 
-                    
+                case "1": return FEET;
+
+                case "2": return METRES;
+
                 case "3": return MILES;
-                    
+
                 default: return "Invalid choice";
 
-            }   
+            }
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void CalculateDistance()
         {
-            if(fromUnit == MILES && toUnit == FEET)
+            if (fromUnit == MILES && toUnit == FEET)
             {
                 toDistance = fromDistance * FEET_IN_MILES;
             }
@@ -200,7 +200,37 @@ namespace ConsoleAppProject.App01
         {
             Console.Write(prompt);
             string value = Console.ReadLine();
-            return Convert.ToDouble(value);
+
+            while (true)
+            {
+                if (IsAllDigits(value))
+                {
+                    return Convert.ToDouble(value);
+                }
+                else
+                {
+                    Console.WriteLine(" \nInvalid Input Digits only allowed\n");
+                    Console.Write(prompt);
+                    value = Console.ReadLine();
+                }
+
+            }
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        bool IsAllDigits(string value)
+        {
+            foreach (char symbol in value)
+            {
+                if (!char.IsDigit(symbol)&& symbol!='.')
+                    return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -222,6 +252,6 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("      By Louis Symons       ");
             Console.WriteLine(" -------------------------- ");
             Console.WriteLine();
-        }   
+        }
     }
 }
