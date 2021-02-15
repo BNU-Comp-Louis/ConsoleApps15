@@ -22,15 +22,11 @@ namespace ConsoleAppProject
 
             DistanceConverter converter = new DistanceConverter();
             converter.ConvertDistance();
-            Console.WriteLine(GetHeading("Convert distances"));
+            
 
             
         }
-        private static string GetHeading(string title)
-        {
-            return "---------------------\n" + "\t" + title + "\n\tLouis Symons" + 
-            "---------------------\n";
-        }
+      
     }
     
 }
