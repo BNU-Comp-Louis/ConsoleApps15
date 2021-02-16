@@ -14,7 +14,7 @@ namespace WebApps.Controllers
 {
     public class HomeController : Controller
     {
-  
+
         public IActionResult Index()
         {
             return View();
@@ -22,7 +22,7 @@ namespace WebApps.Controllers
 
         public IActionResult DistanceConverter(DistanceConverter converter)
         {
-            if(converter.FromDistance > 0)
+            if (converter.FromDistance > 0)
             {
                 converter.CalculateDistance();
             }
