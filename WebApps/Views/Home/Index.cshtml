@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "LS Home Page";
 }
 
 
-<div class="text-center">
+<div class="text-center jumbotron justify-content-center">
     <h1 class="display-4">BNU CO453 Applications Programming 2020-2021!</h1>
     <h4>Developed by Louis Symons</h4>
 </div>
@@ -12,8 +12,8 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="list-group">
-                <a class="list-group-item list-group-item-action">App01: Distance Converter</a>
-                <a class="list-group-item list-group-item-action">App02: BMI Calculator</a>
+                <a class="list-group-item list-group-item" asp-controller="Home" asp-action="DistanceConverter">App01: Distance Converter</a>
+                <a class="list-group-item list-group-item" asp-controller="Home" asp-action="BMICalculator">App02: BMI Calculator</a>
                 <a class="list-group-item list-group-item-action">App03: Students Marks</a>
                 <a class="list-group-item list-group-item-action">App04: Social Network</a>
                 <a class="list-group-item list-group-item-action">App05: R-P-S Game</a>

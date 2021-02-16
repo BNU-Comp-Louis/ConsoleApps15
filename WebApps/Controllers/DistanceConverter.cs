@@ -1,8 +1,16 @@
 ﻿namespace WebApps.Controllers
 {
-    public class DistanceConverter
+    public class DistanceConverterController1 : Controller
     {
+        public IActionResult DistanceConverter(DistanceConverter converter)
+        {
+            if (converter.FromDistance > 0)
+            {
+                converter.CalculateDistance();
+            }
+            return View(converter);
+        }
 
     }
-
+}
 }

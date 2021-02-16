@@ -35,11 +35,11 @@ namespace ConsoleAppProject.App01
 
         public string ToUnit  { get; set; }
 
-/// <summary>
-/// Constructor of the class to set values of constants and print 
-/// Heading for the user.
-/// </summary>
-public DistanceConverter()
+        /// <summary>
+        /// Constructor of the class to set values of constants and print 
+        /// Heading for the user.
+        /// </summary>
+        public DistanceConverter()
         {
             FromUnit = MILES;
             ToUnit = FEET;
