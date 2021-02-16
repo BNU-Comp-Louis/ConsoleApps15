@@ -27,22 +27,22 @@ namespace ConsoleAppProject.App01
 
         public const String QUIT = "quit";
 
-        private double fromDistance;
+        public double FromDistance { get; set; }
 
-        private double toDistance;
+        public double ToDistance { get; set; }
 
-        private string fromUnit;
+        public string FromUnit { get; set; }
 
-        private string toUnit;
+        public string ToUnit  { get; set; }
 
-        /// <summary>
-        /// Constructor of the class to set values of constants and print 
-        /// Heading for the user.
-        /// </summary>
-        public DistanceConverter()
+/// <summary>
+/// Constructor of the class to set values of constants and print 
+/// Heading for the user.
+/// </summary>
+public DistanceConverter()
         {
-            fromUnit = MILES;
-            toUnit = FEET;
+            FromUnit = MILES;
+            ToUnit = FEET;
         }
 
         /// <summary>
@@ -58,16 +58,16 @@ namespace ConsoleAppProject.App01
 
             while (!finished)
             {
-                fromUnit = null;
-                toUnit = null;
+                FromUnit = null;
+                ToUnit = null;
 
-                fromUnit = SelectUnit(" Please select the from distance unit >");
+                FromUnit = SelectUnit(" Please select the from distance unit >");
 
-                toUnit = SelectUnit(" Please select the to distance unit >");
+                ToUnit = SelectUnit(" Please select the to distance unit >");
 
-                Console.WriteLine($"\n Converting {fromUnit} to {toUnit}");
+                Console.WriteLine($"\n Converting {FromUnit} to {ToUnit}");
 
-                fromDistance = InputDistance($" Please enter the number of {fromUnit} > ");
+                FromDistance = InputDistance($" Please enter the number of {FromUnit} > ");
 
                 CalculateDistance();
 
@@ -163,31 +163,31 @@ namespace ConsoleAppProject.App01
         /// <summary>
         /// Calculations for the measurements that the user enters.
         /// </summary>
-        private void CalculateDistance()
+        public void CalculateDistance()
         {
-            if (fromUnit == MILES && toUnit == FEET)
+            if (FromUnit == MILES && ToUnit == FEET)
             {
-                toDistance = fromDistance * FEET_IN_MILES;
+                ToDistance = FromDistance * FEET_IN_MILES;
             }
-            else if (fromUnit == FEET && toUnit == MILES)
+            else if (FromUnit == FEET && ToUnit == MILES)
             {
-                toDistance = fromDistance / FEET_IN_MILES;
+                ToDistance = FromDistance / FEET_IN_MILES;
             }
-            else if (fromUnit == METRES && toUnit == MILES)
+            else if (FromUnit == METRES && ToUnit == MILES)
             {
-                toDistance = fromDistance / METRES_IN_MILES;
+                ToDistance = FromDistance / METRES_IN_MILES;
             }
-            else if (fromUnit == MILES && toUnit == METRES)
+            else if (FromUnit == MILES && ToUnit == METRES)
             {
-                toDistance = fromDistance * METRES_IN_MILES;
+                ToDistance = FromDistance * METRES_IN_MILES;
             }
-            else if (fromUnit == FEET && toUnit == METRES)
+            else if (FromUnit == FEET && ToUnit == METRES)
             {
-                toDistance = fromDistance / FEET_IN_METRES;
+                ToDistance = FromDistance / FEET_IN_METRES;
             }
-            else if (fromUnit == METRES && toUnit == FEET)
+            else if (FromUnit == METRES && ToUnit == FEET)
             {
-                toDistance = fromDistance * FEET_IN_METRES;
+                ToDistance = FromDistance * FEET_IN_METRES;
             }
         }
 
@@ -238,7 +238,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void OutputDistance()
         {
-            Console.WriteLine($"\n{fromDistance} {fromUnit} is {toDistance} {toUnit}");
+            Console.WriteLine($"\n{FromDistance} {FromUnit} is {ToDistance} {ToUnit}");
         }
 
         /// <summary>
