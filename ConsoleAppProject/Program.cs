@@ -1,4 +1,5 @@
 ﻿using ConsoleAppProject.App01;
+using ConsoleAppProject.App02;
 using System;
 
 namespace ConsoleAppProject
@@ -19,9 +20,35 @@ namespace ConsoleAppProject
             
             Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(" -------------------------- ");
+            Console.WriteLine("  Console Applications 2020    ");
+            Console.WriteLine("      By Louis Symons       ");
+            Console.WriteLine(" -------------------------- ");
+            Console.WriteLine();
 
-            DistanceConverter converter = new DistanceConverter();
-            converter.ConvertDistance();
+            Console.WriteLine("1. Distance Converter");
+            Console.WriteLine("2. BMI Calculator");
+            Console.WriteLine("3. Student Marks");
+
+            Console.WriteLine("Please Select Your application >");
+
+            String choice = Console.ReadLine();
+
+            if (choice == "1")
+            {
+                DistanceConverter converter = new DistanceConverter();
+                converter.ConvertDistance();
+            }
+            else if (choice == "2")
+            {
+                BMI bmi = new BMI();
+                bmi.CalculateIndex();
+            }
+            else Console.WriteLine("Invalid Choice!");
+
+
+            
             
 
             
