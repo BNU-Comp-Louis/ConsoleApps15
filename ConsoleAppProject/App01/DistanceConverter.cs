@@ -52,7 +52,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         public void ConvertDistance()
         {
-            OutputHeading();
+            ConsoleHelper.OutputHeading("Distance Converter");
 
             Boolean finished = false;
 
@@ -241,17 +241,6 @@ namespace ConsoleAppProject.App01
             Console.WriteLine($"\n{FromDistance} {FromUnit} is {ToDistance} {ToUnit}");
         }
 
-        /// <summary>
-        /// Print method for a heading of the app
-        /// </summary>
-        private void OutputHeading()
-        {
-            Console.WriteLine();
-            Console.WriteLine(" -------------------------- ");
-            Console.WriteLine("     Distance Converter    ");
-            Console.WriteLine("      By Louis Symons       ");
-            Console.WriteLine(" -------------------------- ");
-            Console.WriteLine();
-        }
+       
     }
 }
