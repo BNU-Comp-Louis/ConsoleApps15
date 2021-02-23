@@ -28,6 +28,7 @@ namespace ConsoleAppProject.App02
 
         public double Centimetres;
         public double Inches;
+        public double Feet;
         public double Kilograms { get; set; }
         public double Metres { get; set; }
         public double Pounds { get; set; }
@@ -73,7 +74,9 @@ namespace ConsoleAppProject.App02
 
         public void InputImperialValues()
         {
+            Feet = ConsoleHelper.InputNumber("Please Enter your height in Feet >");
             Inches = ConsoleHelper.InputNumber("\nPlease enter your height in Inches >");
+            Stone = ConsoleHelper.InputNumber("\nPlease Enter your weight in Stone >");
             Pounds = ConsoleHelper.InputNumber("\nPlease enter your weight in Pounds >");
 
         }
