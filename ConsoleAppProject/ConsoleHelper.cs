@@ -100,5 +100,7 @@ namespace ConsoleAppProject
 
             return number;
         }
+
+     
     }
 }
