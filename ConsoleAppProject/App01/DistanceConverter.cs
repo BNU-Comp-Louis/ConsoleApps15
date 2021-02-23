@@ -79,6 +79,10 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("Application Finshed");
         }
 
+        /// <summary>
+        /// Method to offer the user the function to quit the application.
+        /// </summary>
+        /// <returns></returns>
         private bool QuitApplication()
         {
             Console.WriteLine("\nDo you want to quit application?");

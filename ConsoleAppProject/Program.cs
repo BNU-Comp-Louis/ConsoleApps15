@@ -27,9 +27,6 @@ namespace ConsoleAppProject
             ConsoleHelper.OutputHeading("BNU CO453 Applications Programming 2020-2021!");
 
             string[] choices = { "Distance Converter", "BMI Calculator" };
-            Console.WriteLine("1. Distance Converter");
-            Console.WriteLine("2. BMI Calculator");
-            Console.WriteLine("3. Student Marks");
             int choiceNo = ConsoleHelper.SelectChoice(choices);
 
 
