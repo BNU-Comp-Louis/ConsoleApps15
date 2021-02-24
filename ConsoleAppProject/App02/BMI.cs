@@ -24,11 +24,11 @@ namespace ConsoleAppProject.App02
         public const int PoundsToStone = 14;
 
         public string Person;
-        public double Index;
+        public double BmiUser;
 
-        public double Centimetres;
-        public double Inches;
-        public double Feet;
+        public double Centimetres { get; set; }
+        public double Inches { get; set; }
+        public double Feet { get; set; }
         public double Kilograms { get; set; }
         public double Metres { get; set; }
         public double Pounds { get; set; }
@@ -60,16 +60,20 @@ namespace ConsoleAppProject.App02
             DisplayBmi();
             PrintHealthMessage();
 
+            ExitApp();
+
         }
 
         public void CalculateImperial()
         {
-            Index = (double)Pounds * 703 / (Inches * Inches);
+            double stoneToPounds = (Stone * 14) + Pounds;
+            double feetToInches = (Feet * 12) + Inches;
+            BmiUser = ((stoneToPounds / feetToInches) / feetToInches) * 703;
         }
 
         public void CalculateMetric()
         {
-            Index = Kilograms / Math.Pow((Centimetres / 100), 2);
+            BmiUser = Kilograms / Math.Pow((Centimetres / 100), 2);
         }
 
         public void InputImperialValues()
@@ -143,32 +147,32 @@ namespace ConsoleAppProject.App02
         {
             Console.WriteLine("You are in the range: " + Person);
             Console.WriteLine();
-            Console.WriteLine($"Your BMI is {Index:0.00}");
+            Console.WriteLine($"Your BMI is {BmiUser:0.00}");
         }
 
         public void BmiRange()
         {
-            if (Index < 18.5)
+            if (BmiUser < 18.5)
             {
                 Person = "Underweight";
             }
-            else if (Index >= 18.5 && Index <= 24.9)
+            else if (BmiUser >= 18.5 && BmiUser <= 24.9)
             {
                 Person = "Healthy";
             }
-            else if (Index >= 25.0 && Index <= 29.9)
+            else if (BmiUser >= 25.0 && BmiUser <= 29.9)
             {
                 Person = "Overweight";
             }
-            else if (Index >= 30.0 && Index <= 34.9)
+            else if (BmiUser >= 30.0 && BmiUser <= 34.9)
             {
                 Person = "Obese level 1";
             }
-            else if (Index >= 35.0 && Index <= 39.9)
+            else if (BmiUser >= 35.0 && BmiUser <= 39.9)
             {
                 Person = "Obese level 2";
             }
-            else if (Index >= 40.0)
+            else if (BmiUser >= 40.0)
             {
                 Person = "Obese level 3";
             }
@@ -181,6 +185,24 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("\nyou have a higher risk.");
             Console.WriteLine("\nAdults 23.0 or more are at increased risk");
             Console.WriteLine("\nAdults 27.5 or more are at high risk.");
+
+        }
+
+        public void ExitApp()
+        {
+            Console.WriteLine("Would you like to Calculate another Bmi?");
+            Console.WriteLine("\ny / n ?");
+            string choice = Console.ReadLine().ToLower();
+
+            if (choice == "n")
+            {
+                CalculateIndex();
+            }
+            else if (choice == "y")
+            {
+                System.Environment.Exit(0);
+            }
+            else Console.WriteLine("Invalid Choice!");
 
         }
     }
