@@ -4,10 +4,13 @@ using System.Text;
 namespace ConsoleAppProject.App02
 {
     /// <summary>
-    /// Please describe the main features of this App
+    /// This app is designed to provide the User with a BMI 
+    /// Taking a Prefered measurement type "Metric" or "Imperial"
+    /// Then asking for Height and Weight measurement
+    /// To then run a calculation to provide a BMI result.
     /// </summary>
     /// <author>
-    /// Student Name version 0.1
+    /// Louis Symons version 0.8
     /// </author>
     public class BmiCalculator
     {
@@ -44,12 +47,18 @@ namespace ConsoleAppProject.App02
 
         public string[] MenuChoices = { METRIC, IMPERIAL };
 
+        /// <summary>
+        /// Constructor for the class and set values ot zero
+        /// </summary>
         public BmiCalculator()
         {
             weight = 0;
             height = 0;
         }
 
+        /// <summary>
+        /// Method to run the applciation 
+        /// </summary>
         public void CalculateIndex()
         {
             ConsoleHelper.OutputHeading("BMI Calculator");
@@ -65,6 +74,9 @@ namespace ConsoleAppProject.App02
 
         }
 
+        /// <summary>
+        /// Calculate the User input and convert it to Imperial measurements.
+        /// </summary>
         public void CalculateImperial()
         {
             double stoneToPounds = (Stone * 14) + Pounds;
@@ -72,11 +84,18 @@ namespace ConsoleAppProject.App02
             BmiUser = ((stoneToPounds / feetToInches) / feetToInches) * 703;
         }
 
+        /// <summary>
+        /// Calculate the User input and convert it to Metric measurements.
+        /// </summary>
         public void CalculateMetric()
         {
             BmiUser = Kilograms / Math.Pow((Centimetres / 100), 2);
         }
 
+        /// <summary>
+        /// Method to take the input from the User and store in fields.
+        /// These are for Imperial Values
+        /// </summary>
         public void InputImperialValues()
         {
             Feet = ConsoleHelper.InputNumber("Please Enter your height in Feet >");
@@ -86,26 +105,20 @@ namespace ConsoleAppProject.App02
 
         }
 
+        /// <summary>
+        /// Method to take the input from the User and store in fields.
+        /// These Are for metric values
+        /// </summary>
         public void InputMetricValues()
         {
             Kilograms = ConsoleHelper.InputNumber("\t\nPlease enter your weight in Kilograms >");
             Centimetres = ConsoleHelper.InputNumber("\t\nPlease enter your weight in Centimetres >");
-
         }
 
-
-        private static string DisplayChoices(string prompt)
-        {
-            Console.WriteLine();
-            Console.WriteLine($" 1. {METRIC}");
-            Console.WriteLine($" 2. {IMPERIAL}");
-            Console.WriteLine();
-
-            Console.Write(prompt);
-            string choice = Console.ReadLine();
-            return choice;
-        }
-
+        /// <summary>
+        /// Method to take the users choice which passes to Console helper.
+        /// Then passes to selected option to take values and calculate them.
+        /// </summary>
         private void SelectUnits()
         {
             Console.WriteLine("\tPlease choose your measure type >");
@@ -131,20 +144,11 @@ namespace ConsoleAppProject.App02
             }
         }
 
-        private static string GetChoice(string choice)
-        {
-
-            switch (choice)
-            {
-                case "1": return METRIC;
-
-                case "2": return IMPERIAL;
-
-                default: return "Invalid choice";
-
-            }
-        }
-
+        /// <summary>
+        /// Takes the value of BMIuser field then checks to see the value 
+        /// then displays the Bmi to the user with the corrensponding message.
+        /// </summary>
+        /// <returns></returns>
         public string GetBmiRange()
         {
             StringBuilder message = new StringBuilder("\n");
@@ -176,7 +180,11 @@ namespace ConsoleAppProject.App02
             return message.ToString();
         }
 
-
+        /// <summary>
+        /// Print method for the Bame message for the user
+        /// This is printed every time after a calculation is preformed.
+        /// </summary>
+        /// <returns></returns>
         public string PrintBameMessage()
         {
             StringBuilder message = new StringBuilder("\n");
@@ -189,6 +197,11 @@ namespace ConsoleAppProject.App02
 
         }
 
+        /// <summary>
+        /// Method to ask the user if they wish to quit the app after a calculation
+        /// This is will either exit the Console app 
+        /// or Restart the app again.
+        /// </summary>
         public void ExitApp()
         {
             Console.WriteLine("\nWould you like to Calculate another Bmi?");
