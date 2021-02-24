@@ -15,7 +15,7 @@ namespace ConsoleAppProject
         {
             DisplayChoices(choices);
 
-            int choiceNo = (int)InputNumber("Please Enter your choice >", 1, choices.Length);
+            int choiceNo = (int)InputNumber("\nPlease Enter your choice >", 1, choices.Length);
             return choiceNo;
         }
 
