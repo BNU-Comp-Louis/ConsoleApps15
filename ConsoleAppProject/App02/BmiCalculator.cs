@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ConsoleAppProject.App02
 {
@@ -8,7 +9,7 @@ namespace ConsoleAppProject.App02
     /// <author>
     /// Student Name version 0.1
     /// </author>
-    public class BMI
+    public class BmiCalculator
     {
         public const string METRIC = "METRIC";
         public const string IMPERIAL = "IMPERIAL";
@@ -24,7 +25,7 @@ namespace ConsoleAppProject.App02
         public const int PoundsToStone = 14;
 
         public string Person;
-        public double BmiUser;
+        public double BmiUser { get; set; }
 
         public double Centimetres { get; set; }
         public double Inches { get; set; }
@@ -43,7 +44,7 @@ namespace ConsoleAppProject.App02
 
         public string[] MenuChoices = { METRIC, IMPERIAL };
 
-        public BMI()
+        public BmiCalculator()
         {
             weight = 0;
             height = 0;
@@ -56,9 +57,9 @@ namespace ConsoleAppProject.App02
 
             
             
-            BmiRange();
-            DisplayBmi();
-            PrintHealthMessage();
+            GetBmiRange();
+            Console.WriteLine(GetBmiRange());
+            Console.WriteLine(PrintBameMessage());
 
             ExitApp();
 
@@ -143,62 +144,62 @@ namespace ConsoleAppProject.App02
 
             }
         }
-        public void DisplayBmi()
-        {
-            Console.WriteLine("You are in the range: " + Person);
-            Console.WriteLine();
-            Console.WriteLine($"Your BMI is {BmiUser:0.00}");
-        }
 
-        public void BmiRange()
+        public string GetBmiRange()
         {
-            if (BmiUser < 18.5)
+            StringBuilder message = new StringBuilder("\n");
+
+            if (BmiUser < Underweight)
             {
-                Person = "Underweight";
+                message.Append($" Your BMI is {BmiUser:0.00}," + $"You are Underweight!");
             }
-            else if (BmiUser >= 18.5 && BmiUser <= 24.9)
+            else if (BmiUser <= Normal)
             {
-                Person = "Healthy";
+                message.Append($"Your BMI is {BmiUser:0.00}," + $"You are in the Normal range.");
             }
-            else if (BmiUser >= 25.0 && BmiUser <= 29.9)
+            else if (BmiUser <= Overweight)
             {
-                Person = "Overweight";
+                message.Append($"Your BMI is {BmiUser:0.00}," + $"You are Overweight");
             }
-            else if (BmiUser >= 30.0 && BmiUser <= 34.9)
+            else if (BmiUser <= ObeaseCLassI)
             {
-                Person = "Obese level 1";
+                message.Append($"Your BMI is {BmiUser:0.00}," + $"You are Obese Class I");
             }
-            else if (BmiUser >= 35.0 && BmiUser <= 39.9)
+            else if (BmiUser <= ObeaseClassII)
             {
-                Person = "Obese level 2";
+                message.Append($"Your BMI is {BmiUser:0.00}," + $"You are Obese Class II");
             }
-            else if (BmiUser >= 40.0)
+            else if (BmiUser <= ObeaseClassIII)
             {
-                Person = "Obese level 3";
+                message.Append($"Your BMI is {BmiUser:0.00}," + $"You are Obese Class III");
             }
+            return message.ToString();
         }
 
 
-        public void PrintHealthMessage()
+        public string PrintBameMessage()
         {
-            Console.WriteLine("\nIf you are Black, Asian or other ethinic groups,");
-            Console.WriteLine("\nyou have a higher risk.");
-            Console.WriteLine("\nAdults 23.0 or more are at increased risk");
-            Console.WriteLine("\nAdults 27.5 or more are at high risk.");
+            StringBuilder message = new StringBuilder("\n");
+            message.Append("\nIf you are Black, Asian or other ethinic groups,");
+            message.Append("\nyou have a higher risk.");
+            message.Append("\nAdults 23.0 or more are at increased risk");
+            message.Append("\nAdults 27.5 or more are at high risk.");
+
+            return message.ToString();
 
         }
 
         public void ExitApp()
         {
-            Console.WriteLine("Would you like to Calculate another Bmi?");
+            Console.WriteLine("\nWould you like to Calculate another Bmi?");
             Console.WriteLine("\ny / n ?");
             string choice = Console.ReadLine().ToLower();
 
-            if (choice == "n")
+            if (choice == "y")
             {
                 CalculateIndex();
             }
-            else if (choice == "y")
+            else if (choice == "n")
             {
                 System.Environment.Exit(0);
             }

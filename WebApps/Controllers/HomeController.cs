@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ConsoleAppProject.App01;
+using ConsoleAppProject.App02;
 using WebApps.Models;
 
 
@@ -29,11 +30,36 @@ namespace WebApps.Controllers
             return View(converter);
         }
 
+        [HttpGet]
         public IActionResult BmiCalculator()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult BmiCalculator(BmiCalculator bmi)
+        {
+            if(bmi.Centimetres > 140)
+            {
+                bmi.CalculateMetric();
+            }
+            else if (bmi.Feet > 4 && bmi.Stone > 6)
+            {
+                bmi.CalculateImperial();
+            }
+            else
+            {
+                ViewBag.Error = "You have entered values too small for any adult!";
+                return View();
+            }
+            double BmiUser = bmi.BmiUser;
+            return RedirectToAction("HealthMessage" , new { BmiUser } );
+        }
+
+        public IActionResult HealthMessage(double BmiUser)
+        {
+            return View(BmiUser);
+        }
         public IActionResult StudentMarks()
         {
             return View();

@@ -1,0 +1,47 @@
+﻿@model ConsoleAppProject.App02.BmiCalculator
+@{
+    ViewData["Title"] = "BmiCalculator";
+}
+
+<header>
+
+<h1>BMI Calculator</h1>
+<h2>By Louis Symons</h2>
+
+<p>
+    This App will use your body weight and height to calculate a 
+    BMI Index which can be used to classify your health risks.
+</p>
+</header>
+<section>
+    <form method="post">
+
+        <h2>Height</h2>
+        <p>Please enter your current height in whole numbers
+            using metric or imperial units.
+        </p>
+        <p>
+            <input type="number" placeholder="Feet" asp-for="@Model.Feet" />
+            <input type="number" placeholder="Inches" asp-for="@Model.Inches" />
+
+        </p>
+        <p>
+            <input type="number" placeholder="Centimetres" asp-for="@Model.Centimetres" />
+        </p>
+        <h2>Weight</h2>
+        <p>
+            Please enter your current height in whole numbers
+            using metric or impoerial units.
+        </p>
+        <p>
+            <input type="number" placeholder="Stones" value="" asp-for="@Model.Stone" />
+            <input type="number" placeholder="Pounds" value="" asp-for="@Model.Pounds" />
+        </p>
+        <p>
+            <input type="number" placeholder="Kilograms" value="" asp-for="@Model.Pounds" />
+        </p>
+        <p>
+            <button class="btn btn-success" type="submit">Calculate</button>
+        </p>
+    </form>
+</section>
