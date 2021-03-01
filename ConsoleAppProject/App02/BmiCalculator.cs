@@ -90,6 +90,7 @@ namespace ConsoleAppProject.App02
         public void CalculateMetric()
         {
             BmiUser = Kilograms / Math.Pow((Centimetres / 100), 2);
+
         }
 
         /// <summary>
