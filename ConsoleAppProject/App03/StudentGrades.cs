@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleAppProject.App03
 {
-    class StudentGrades
+    public class StudentGrades
     {
         public const int LowestMark = 0;
         public const int LowestDMark = 40;

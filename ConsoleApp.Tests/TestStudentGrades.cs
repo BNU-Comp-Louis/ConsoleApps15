@@ -6,7 +6,7 @@ namespace ConsoleApp.Tests
     [TestClass]
     public class TestStudentGrades
     {
-        private readonly StudentGrades converter = new StudentGrades();
+        private readonly StudentGrades studentGrades = new StudentGrades();
 
         [TestMethod]
         public void TestConvert0ToGradeF()
@@ -17,7 +17,7 @@ namespace ConsoleApp.Tests
 
             //act 
 
-            Grades actualGrade = grades.ConverttoGrade(0);
+            Grades actualGrade = studentGrades.ConvertToGrade(0);
 
             //Assert
 
