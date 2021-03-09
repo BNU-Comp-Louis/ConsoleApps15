@@ -8,6 +8,21 @@ namespace ConsoleApp.Tests
     {
         private readonly StudentGrades studentGrades = new StudentGrades();
 
+        private int[] testMarks;
+
+        private readonly int[] StatsMarks = new int[]
+        {
+            10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+        };
+
+        public TestStudentGrades()
+        {
+            testMarks = new int[]
+            {
+                10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+            };
+        }
+
         [TestMethod]
         public void TestConvert0ToGradeF()
         {
@@ -167,5 +182,45 @@ namespace ConsoleApp.Tests
 
             Assert.AreEqual(expectedGrade, actualGrade);
         }
+
+        [TestMethod]
+        public void TestCalculateMean()
+        {
+            studentGrades.Marks = testMarks;
+            double expectedMean = 55.0;
+            studentGrades.CalculateStats();
+
+            Assert.AreEqual(expectedMean, studentGrades.Mean);
+        }
+
+        [TestMethod]
+        public void TestCalculateMin()
+        {
+            studentGrades.Marks = StatsMarks;
+            int expectedMin = 10;
+
+            studentGrades.CalculateStats();
+
+            Assert.AreEqual(expectedMin, studentGrades.Minimum);
+        }
+
+        [TestMethod]
+        public void TestGradeProfile()
+        {
+            studentGrades.Marks = testMarks;
+
+            studentGrades.CalculateGradeProfile();
+
+            bool expectedProfile;
+            expectedProfile = ((studentGrades.GradeProfile[0] == 3) &&
+                               (studentGrades.GradeProfile[1] == 1) &&
+                               (studentGrades.GradeProfile[2] == 1) &&
+                               (studentGrades.GradeProfile[3] == 1) &&
+                               (studentGrades.GradeProfile[4] == 4));
+
+            Assert.IsTrue(expectedProfile);
+
+        }
+
     }
 }
