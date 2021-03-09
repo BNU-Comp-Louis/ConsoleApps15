@@ -46,7 +46,23 @@ namespace ConsoleAppProject.App03
             {
                 return Grades.F;
             }
-            else return Grades.D;
+            else if (mark >= LowestDMark && mark < LowestCMark)
+            {
+                return Grades.D;
+            }
+            else if (mark >= LowestCMark && mark < LowestBMark)
+            {
+                return Grades.C;
+            }
+            else if (mark >= LowestBMark && mark < LowestAMark)
+            {
+                return Grades.B;
+            }
+            else if (mark >= LowestAMark && mark <= MaxMark)
+            {
+                return Grades.A;
+            }
+            else return Grades.X;
         }
 
         public void SelectUnits()
