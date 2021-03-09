@@ -67,7 +67,6 @@ namespace ConsoleAppProject.App03
 
         public void SelectUnits()
         {
-            Console.WriteLine("\tPlease from the following options >");
 
             string[] choices = { "Input Marks", "Output Marks", "Output Stats"
             , "Output Grade Profile", "Exit Application"};
@@ -84,11 +83,11 @@ namespace ConsoleAppProject.App03
             }
             else if (choice == 3)
             {
-                Console.WriteLine("Test");
+                PrintStats();
             }
             else if (choice == 4)
             {
-                Console.WriteLine("Test");
+                OutputGradeProfile();
             }
             else if (choice == 5)
             {
@@ -116,18 +115,22 @@ namespace ConsoleAppProject.App03
             for (int i = 0; i < Students.Length; i++)
             {
                 Marks[i] = (int)ConsoleHelper.InputNumber($"\nEnter Mark for:" + $" {Students[i]} >", 0,100);
+
             }
+            Console.WriteLine();
             SelectUnits();
         }
 
         public void OutputMarks()
         {
             Console.WriteLine("\nBelow are Grades for all students");
-             
-            foreach (var item in Students)
+
+            for (int i = 0; i < Students.Length; i++)
             {
-                Console.WriteLine(item.ToString() + $" {Students.Length}");
+                Console.WriteLine($"\t{Students[i]} {Marks[i]} " +
+                    $"{ConvertToGrade(Marks[i])}");
             }
+            SelectUnits();
 
         }
 
@@ -141,10 +144,29 @@ namespace ConsoleAppProject.App03
 
             foreach(int mark in Marks)
             {
-                if (mark > Maximum) Maximum = mark;
-                if (mark < Maximum) Minimum = mark;
+                if (mark > Maximum)
+                {
+                    Maximum = mark;
+                }
+                if (mark < Maximum)
+                { 
+                    Minimum = mark;
+                }
+                total += mark;
             }
             Mean = total / Marks.Length;
+        }
+
+        public void PrintStats()
+        {
+            CalculateStats();
+
+            Console.WriteLine( "Minimum Mark: " + $"{Minimum}");
+            Console.WriteLine( "Maximum Mark: " + $"{Maximum}");
+            Console.WriteLine( "Mean Mark: " +  $"{Mean}");
+
+            SelectUnits();
+            
         }
 
         public void CalculateGradeProfile()
@@ -163,6 +185,9 @@ namespace ConsoleAppProject.App03
 
         private void OutputGradeProfile()
         {
+
+            CalculateGradeProfile();
+
             Grades grade = Grades.X;
                 Console.WriteLine();
 
@@ -173,6 +198,7 @@ namespace ConsoleAppProject.App03
                 grade++;
             }
             Console.WriteLine();
+            SelectUnits();
         }
     }
 }
