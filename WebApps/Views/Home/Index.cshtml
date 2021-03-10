@@ -7,17 +7,22 @@
     <h4>Developed by Louis Symons</h4>
 </div>
 <section>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <div class="list-group">
-                <a class="list-group-item list-group-item" asp-controller="Home" asp-action="DistanceConverter">App01: Distance Converter</a>
-                <a class="list-group-item list-group-item" asp-controller="Home" asp-action="BMICalculator">App02: BMI Calculator</a>
-                <a class="list-group-item list-group-item-action">App03: Students Marks</a>
-                <a class="list-group-item list-group-item-action">App04: Social Network</a>
-                <a class="list-group-item list-group-item-action">App05: R-P-S Game</a>
-            </div>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
+    <ol class="list-group">
+        <li class="list-group-item">
+            <a class="btn btn-success" asp-controller="Home"
+               asp-action="DistanceConverter">App 01</a>
+            Distance Converter
+        </li>
+        <li class="list-group-item">
+            <a class="btn btn-info" asp-controller="Home"
+               asp-action="BMICalculator">App 02</a>
+            BMI Calculator
+        </li>
+        <li class="list-group-item">
+            <a class="btn btn-warning" asp-controller="Students"
+               asp-action="Index">App 03</a>
+            Student Marks
+        </li>
+
+    </ol>
 </section>
