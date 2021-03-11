@@ -205,6 +205,17 @@ namespace ConsoleApp.Tests
         }
 
         [TestMethod]
+        public void TestCalculateMax()
+        {
+            studentGrades.Marks = StatsMarks;
+            int expectedMax = 100;
+
+            studentGrades.CalculateStats();
+
+            Assert.AreEqual(expectedMax, studentGrades.Maximum);
+        }
+
+        [TestMethod]
         public void TestGradeProfile()
         {
             studentGrades.Marks = testMarks;
