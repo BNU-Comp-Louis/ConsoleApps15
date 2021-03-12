@@ -21,6 +21,9 @@ namespace ConsoleAppProject.App03
         public int Minimum { get; set; }
         public int Maximum { get; set; }
 
+        /// <summary>
+        /// Sets the Array for students 
+        /// </summary>
         public StudentGrades()
         {
             Students = new string[]
@@ -34,6 +37,9 @@ namespace ConsoleAppProject.App03
             Marks = new int[Students.Length];
         }
 
+        /// <summary>
+        /// Method to print the heading for the menu 
+        /// </summary>
         public void CalculateGrades()
         {
             ConsoleHelper.OutputHeading("Student Grades");
@@ -41,6 +47,12 @@ namespace ConsoleAppProject.App03
             SelectUnits();
         }
 
+        /// <summary>
+        /// Take the grade provived and runs a check to see where it sit 
+        /// with the grade boundry 
+        /// </summary>
+        /// <param name="mark"></param>
+        /// <returns></returns>
         public Grades ConvertToGrade(int mark)
         {
             if (mark >= LowestMark && mark < LowestDMark)
@@ -66,6 +78,9 @@ namespace ConsoleAppProject.App03
             else return Grades.X;
         }
 
+        /// <summary>
+        /// Menu choices for the user stored in array
+        /// </summary>
         public void SelectUnits()
         {
 
@@ -109,6 +124,10 @@ namespace ConsoleAppProject.App03
             Environment.Exit(0);
         }
 
+        /// <summary>
+        /// Method to take the input from the user,
+        /// also ensures marks is between 1/100
+        /// </summary>
         public void InputMarks()
         {
             Console.WriteLine("\n\tPlease enter a mark for each student.");
@@ -122,6 +141,9 @@ namespace ConsoleAppProject.App03
             SelectUnits();
         }
 
+        /// <summary>
+        /// Out put the marks for the particular student 
+        /// </summary>
         public void OutputMarks()
         {
             Console.WriteLine("\nBelow are Grades for all students");
@@ -135,7 +157,9 @@ namespace ConsoleAppProject.App03
 
         }
 
-
+        /// <summary>
+        /// Calculate the stats for a student stores max and min in array
+        /// </summary>
         public void CalculateStats()
         {
             Minimum = Marks[0];
@@ -158,6 +182,9 @@ namespace ConsoleAppProject.App03
             Mean = total / Marks.Length;
         }
 
+        /// <summary>
+        /// Prints the stats for the marks 
+        /// </summary>
         public void PrintStats()
         {
             CalculateStats();
@@ -170,6 +197,9 @@ namespace ConsoleAppProject.App03
             
         }
 
+        /// <summary>
+        /// Calculates the grade profile for a student 
+        /// </summary>
         public void CalculateGradeProfile()
         {
             for (int i = 0; i < GradeProfile.Length; i++)
@@ -184,6 +214,9 @@ namespace ConsoleAppProject.App03
             }
         }
 
+        /// <summary>
+        /// Outputs the grade profile and converter the results to percent.
+        /// </summary>
         private void OutputGradeProfile()
         {
 

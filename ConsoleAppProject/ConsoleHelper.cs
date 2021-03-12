@@ -34,7 +34,7 @@ namespace ConsoleAppProject
 
 
         /// <summary>
-        /// 
+        /// Method for displays user choices
         /// </summary>
         /// <param name="choices"></param>
         private static void DisplayChoices(string[] choices)
@@ -51,7 +51,7 @@ namespace ConsoleAppProject
         }
 
         /// <summary>
-        /// 
+        /// Genrenic method to read input from the user 
         /// </summary>
         /// <param name="prompt"></param>
         /// <returns></returns>
@@ -81,6 +81,13 @@ namespace ConsoleAppProject
 
         }
 
+        /// <summary>
+        /// Input method for the user 
+        /// </summary>
+        /// <param name="prompt"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public static double InputNumber(string prompt, double min, double max)
         {
             bool Isvalid = false;
