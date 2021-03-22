@@ -74,6 +74,16 @@ namespace ConsoleAppProject.App04
           
         }
 
+        public void DisplayAuthor()
+        {
+            foreach (Post author in Author)
+            {
+                author.Display();
+            }
+        }
+
+            
+
         internal void RemovePost(int id)
         {
             Post post = FindPost(id);
@@ -100,11 +110,33 @@ namespace ConsoleAppProject.App04
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private Post FindPost(int id)
         {
             foreach(Post post in posts)
             {
                 if(post.PostId == id)
+                {
+                    return post;
+                }
+            }
+            return null;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="author"></param>
+        /// <returns></returns>
+        public Post FindAuthor(string Author)
+        {
+            foreach(Post post in posts)
+            {
+                if(post.Username == Author)
                 {
                     return post;
                 }

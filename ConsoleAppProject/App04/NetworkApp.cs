@@ -10,7 +10,7 @@ namespace ConsoleAppProject.App04
         private NewsFeed news = new NewsFeed();
         public void DisplayMenu()
         {
-            ConsoleHelper.OutputHeading("   Louis's News Feed");
+            ConsoleHelper.OutputHeading("   Louis's Social Media App");
 
             string[] choices = new string[]
             {
@@ -67,12 +67,15 @@ namespace ConsoleAppProject.App04
             throw new NotImplementedException();
         }
 
-        private void DisplayByDate()
+        private void DisplayByAuthor()
         {
-            throw new NotImplementedException();
+            ConsoleHelper.OutputTitle(" Displays posts by Author");
+            Console.WriteLine(" Please enter the Name of the author to search for >");
+            string author = Console.ReadLine();
+            news.FindAuthor(author);
         }
 
-        private void DisplayByAuthor()
+        private void DisplayByDate()
         {
             throw new NotImplementedException();
         }
