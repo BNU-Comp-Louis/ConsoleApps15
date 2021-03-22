@@ -20,6 +20,9 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
+
+        public const string Author = "Louis";
+
         private readonly List<Post> posts;
 
         ///<summary>
@@ -28,6 +31,11 @@ namespace ConsoleAppProject.App04
         public NewsFeed()
         {
             posts = new List<Post>();
+            MessagePost post = new MessagePost(Author, "Hello");
+            AddMessagePost(post);
+
+            PhotoPost photoPost = new PhotoPost(Author, "Photo13.jpg", "A image");
+            AddPhotoPost(photoPost);
         }
 
 
@@ -64,6 +72,44 @@ namespace ConsoleAppProject.App04
                 Console.WriteLine();   // empty line between posts
             }
           
+        }
+
+        internal void RemovePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($"  \nPost with ID = {id} does not exist!\n");
+            }
+            else
+            {
+                Console.WriteLine($"  \nThe following post {id} has been removed\n");
+
+                if(post is MessagePost mp)
+                {
+                    mp.Display();
+                }
+                else if(post is PhotoPost pp)
+                {
+                    pp.Display();
+                }
+
+                posts.Remove(post);
+
+            }
+        }
+
+        private Post FindPost(int id)
+        {
+            foreach(Post post in posts)
+            {
+                if(post.PostId == id)
+                {
+                    return post;
+                }
+            }
+            return null;
         }
     }
 

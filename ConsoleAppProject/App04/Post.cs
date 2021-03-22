@@ -8,7 +8,11 @@ namespace ConsoleAppProject.App04
     {
         private int likes;
 
+        public int PostId { get; }
+
         private readonly List<String> comments;
+
+        private static int instances = 0;
 
 
         // username of the post's author
@@ -22,8 +26,12 @@ namespace ConsoleAppProject.App04
         /// <param name="author"></param>
         public Post(string author)
         {
+            instances++;
+            PostId = instances;
+
             this.Username = author;
             Timestamp = DateTime.Now;
+
             likes = 0;
             comments = new List<String>();
         }
@@ -46,6 +54,7 @@ namespace ConsoleAppProject.App04
                 likes--;
             }
         }
+
 
            ///<summary>
         /// Create a string describing a time point in the past in terms 
@@ -76,6 +85,11 @@ namespace ConsoleAppProject.App04
             }
         }
 
+        public static int GetNumberOfPosts()
+        {
+            return instances;
+        }
+
         ///<summary>
         /// Add a comment to this post.
         /// </summary>
@@ -93,7 +107,7 @@ namespace ConsoleAppProject.App04
         /// (Currently: Print to the text terminal. This is simulating display 
         /// in a web browser for now.)
         ///</summary>
-        public void Display()
+        public virtual void Display()
         {
             Console.WriteLine();
             Console.WriteLine($"    Author: {Username}");

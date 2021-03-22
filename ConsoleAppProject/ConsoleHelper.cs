@@ -32,6 +32,22 @@ namespace ConsoleAppProject
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Print method for a heading of the app
+        /// </summary>
+        public static void OutputTitle(string title)
+        {
+
+            Console.WriteLine($"\n {title}");
+            Console.Write(" ");
+
+            for (int count = 0; count <= title.Length; count++) 
+            {
+                Console.Write(" ");
+            }
+
+            Console.WriteLine("\n");
+        }
 
         /// <summary>
         /// Method for displays user choices
@@ -80,6 +96,7 @@ namespace ConsoleAppProject
             return number;
 
         }
+
 
         /// <summary>
         /// Input method for the user 
