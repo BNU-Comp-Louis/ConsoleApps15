@@ -74,13 +74,7 @@ namespace ConsoleAppProject.App04
           
         }
 
-        public void DisplayAuthor()
-        {
-            foreach (Post author in Author)
-            {
-                author.Display();
-            }
-        }
+     
 
             
 
