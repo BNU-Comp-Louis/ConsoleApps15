@@ -10,22 +10,22 @@ using WebApps.Models;
 
 namespace WebApps.Controllers
 {
-    public class MessagePostController : Controller
+    public class MessagePostsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public MessagePostController(ApplicationDbContext context)
+        public MessagePostsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: MessagePost
+        // GET: MessagePosts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Posts.ToListAsync());
+            return View(await _context.Messages.ToListAsync());
         }
 
-        // GET: MessagePost/Details/5
+        // GET: MessagePosts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace WebApps.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts
+            var messagePost = await _context.Messages
                 .FirstOrDefaultAsync(m => m.PostId == id);
-            if (post == null)
+            if (messagePost == null)
             {
                 return NotFound();
             }
 
-            return View(post);
+            return View(messagePost);
         }
 
-        // GET: MessagePost/Create
+        // GET: MessagePosts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: MessagePost/Create
+        // POST: MessagePosts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,Username,Timestamp,Likes")] Post post)
+        public async Task<IActionResult> Create([Bind("Message,PostId,Username,Timestamp,Likes")] MessagePost messagePost)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(post);
+                _context.Add(messagePost);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(post);
+            return View(messagePost);
         }
 
-        // GET: MessagePost/Edit/5
+        // GET: MessagePosts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace WebApps.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts.FindAsync(id);
-            if (post == null)
+            var messagePost = await _context.Messages.FindAsync(id);
+            if (messagePost == null)
             {
                 return NotFound();
             }
-            return View(post);
+            return View(messagePost);
         }
 
-        // POST: MessagePost/Edit/5
+        // POST: MessagePosts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PostId,Username,Timestamp,Likes")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Message,PostId,Username,Timestamp,Likes")] MessagePost messagePost)
         {
-            if (id != post.PostId)
+            if (id != messagePost.PostId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace WebApps.Controllers
             {
                 try
                 {
-                    _context.Update(post);
+                    _context.Update(messagePost);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostExists(post.PostId))
+                    if (!MessagePostExists(messagePost.PostId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace WebApps.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(post);
+            return View(messagePost);
         }
 
-        // GET: MessagePost/Delete/5
+        // GET: MessagePosts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace WebApps.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts
+            var messagePost = await _context.Messages
                 .FirstOrDefaultAsync(m => m.PostId == id);
-            if (post == null)
+            if (messagePost == null)
             {
                 return NotFound();
             }
 
-            return View(post);
+            return View(messagePost);
         }
 
-        // POST: MessagePost/Delete/5
+        // POST: MessagePosts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var post = await _context.Posts.FindAsync(id);
-            _context.Posts.Remove(post);
+            var messagePost = await _context.Messages.FindAsync(id);
+            _context.Messages.Remove(messagePost);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PostExists(int id)
+        private bool MessagePostExists(int id)
         {
-            return _context.Posts.Any(e => e.PostId == id);
+            return _context.Messages.Any(e => e.PostId == id);
         }
     }
 }
