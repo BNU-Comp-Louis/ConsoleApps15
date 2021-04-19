@@ -10,71 +10,69 @@ using WebApps.Models;
 
 namespace WebApps.Controllers
 {
-    public class PostsController : Controller
+    public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public PostsController(ApplicationDbContext context)
+        public CommentsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Posts
-        public async Task<IActionResult> Index(string userName)
+        // GET: Comments
+        public async Task<IActionResult> Index()
         {
-            var posts = from p in _context.Posts
-                        select p;
-
-            if (!String.IsNullOrEmpty(userName))
-            {
-                posts = posts.Where(u => u.Username == userName);
-            }
-
-            return View(await posts.ToListAsync());
+            var applicationDbContext = _context.Comments.Include(c => c.Post);
+            return View(await applicationDbContext.ToListAsync());
         }
-       
 
-    // GET: Posts/Details/5
-    public async Task<IActionResult> Details(int? id)
+        // GET: Comments/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var post = await _context.Posts
-                .FirstOrDefaultAsync(m => m.PostId == id);
-            if (post == null)
+            var comment = await _context.Comments
+                .Include(c => c.Post)
+                .FirstOrDefaultAsync(m => m.CommentID == id);
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(post);
+            return View(comment);
         }
 
-        // GET: Posts/Create
-        public IActionResult Create()
+        // GET: Comments/Create
+        public IActionResult Create(int id)
         {
-            return View();
+            var posts = _context.Posts.ToList();
+            Comment comment = new Comment();
+            comment.PostId = id;
+
+            return View(comment);
         }
 
-        // POST: Posts/Create
+        // POST: Comments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,Username")] Post post)
+        public async Task<IActionResult> Create([Bind("CommentID,PostId,Text")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(post);
+                _context.Add(comment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(post);
+            ViewData["PostId"] = new SelectList(_context.Posts, "PostId", "Discriminator", comment.PostId);
+            return View(comment);
         }
 
-        // GET: Posts/Edit/5
+        // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,22 +80,23 @@ namespace WebApps.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts.FindAsync(id);
-            if (post == null)
+            var comment = await _context.Comments.FindAsync(id);
+            if (comment == null)
             {
                 return NotFound();
             }
-            return View(post);
+            ViewData["PostId"] = new SelectList(_context.Posts, "PostId", "Discriminator", comment.PostId);
+            return View(comment);
         }
 
-        // POST: Posts/Edit/5
+        // POST: Comments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PostId,Username")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("CommentID,PostId,Text")] Comment comment)
         {
-            if (id != post.PostId)
+            if (id != comment.CommentID)
             {
                 return NotFound();
             }
@@ -106,12 +105,12 @@ namespace WebApps.Controllers
             {
                 try
                 {
-                    _context.Update(post);
+                    _context.Update(comment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostExists(post.PostId))
+                    if (!CommentExists(comment.CommentID))
                     {
                         return NotFound();
                     }
@@ -122,10 +121,11 @@ namespace WebApps.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(post);
+            ViewData["PostId"] = new SelectList(_context.Posts, "PostId", "Discriminator", comment.PostId);
+            return View(comment);
         }
 
-        // GET: Posts/Delete/5
+        // GET: Comments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,30 +133,31 @@ namespace WebApps.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts
-                .FirstOrDefaultAsync(m => m.PostId == id);
-            if (post == null)
+            var comment = await _context.Comments
+                .Include(c => c.Post)
+                .FirstOrDefaultAsync(m => m.CommentID == id);
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(post);
+            return View(comment);
         }
 
-        // POST: Posts/Delete/5
+        // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var post = await _context.Posts.FindAsync(id);
-            _context.Posts.Remove(post);
+            var comment = await _context.Comments.FindAsync(id);
+            _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PostExists(int id)
+        private bool CommentExists(int id)
         {
-            return _context.Posts.Any(e => e.PostId == id);
+            return _context.Comments.Any(e => e.CommentID == id);
         }
     }
 }
