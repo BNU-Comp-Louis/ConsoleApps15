@@ -49,6 +49,7 @@ namespace WebApps.Controllers
         public IActionResult Create(int id)
         {
             var posts = _context.Posts.ToList();
+            ViewBag.PostId = new SelectList(posts, "PostId", "UserName");
             Comment comment = new Comment();
             comment.PostId = id;
 
@@ -66,7 +67,8 @@ namespace WebApps.Controllers
             {
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "PhotoPosts",
+                    new { id = comment.PostId });
             }
             ViewData["PostId"] = new SelectList(_context.Posts, "PostId", "Discriminator", comment.PostId);
             return View(comment);

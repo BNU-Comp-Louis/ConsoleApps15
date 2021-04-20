@@ -20,14 +20,46 @@ namespace WebApps.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index(string userName)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["PostIdSortParm"] = sortOrder == "PostId" ? "postid_desc" : "PostId";
+            ViewData["DateSortParm"] = sortOrder == "Date" ?  "date_desc" : "Date";
+            ViewData["CurrentFilter"] = searchString;
+
             var posts = from p in _context.Posts
                         select p;
 
-            if (!String.IsNullOrEmpty(userName))
+            if (!String.IsNullOrEmpty(searchString))
             {
-                posts = posts.Where(u => u.Username == userName);
+                posts = posts.Where(u => u.Username == searchString);
+            }
+            
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    posts = posts.OrderByDescending(u => u.Username);
+                    break;
+
+                case "postid_desc":
+                    posts = posts.OrderBy(p => p.PostId);
+                    break;
+
+                case "PostId":
+                    posts = posts.OrderBy(p => p.PostId);
+                    break;
+
+                case "Date":
+                    posts = posts.OrderBy(d => d.Timestamp);
+                    break;
+
+                case "date_desc":
+                    posts = posts.OrderByDescending(d => d.Timestamp);
+                    break;
+
+                default:
+                    posts = posts.OrderBy(p => p.PostId);
+                    break;
             }
 
             return View(await posts.ToListAsync());
