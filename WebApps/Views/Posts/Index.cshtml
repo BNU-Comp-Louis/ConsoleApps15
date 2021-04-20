@@ -7,7 +7,7 @@
 
 
 <header class="jumbotron">
-    <h1>Add Post</h1>
+    <h1>News Feed</h1>
     <form asp-action="Index" mehtod="get">
         <div class="form-actions no-color">
             <p>
@@ -25,8 +25,8 @@
 </header>
 
 <p>
-    <a class="btn btn-success" asp-controller="MessagePosts" asp-action="Create">Create New Post</a>
-    <a class="btn btn-info" asp-controller="PhotoPosts" asp-action="Create">Create New Photo Post</a>
+    <a class="btn btn-success" asp-controller="MessagePosts" asp-action="Create">Create Message Post</a>
+    <a class="btn btn-info" asp-controller="PhotoPosts" asp-action="Create">Create Photo Post</a>
 </p>
 
 <table class="table">
@@ -116,9 +116,9 @@
                     @Html.DisplayFor(modelItem => item.Likes)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.PostId">Edit</a> 
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.PostId">Details</a> 
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
                 </td>
             </tr>
         }
