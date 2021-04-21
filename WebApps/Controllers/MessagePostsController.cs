@@ -145,9 +145,44 @@ namespace WebApps.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public ActionResult Like(int id)
+        {
+            var messagePost = _context.Messages.Find(id);
+
+            if (messagePost == null)
+            {
+                return NotFound();
+            }
+
+            messagePost.Like();
+
+            try
+            {
+                _context.Update(messagePost);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MessagePostExists(messagePost.PostId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Details", new { id = id });
+        }
+          
+
+
         private bool MessagePostExists(int id)
         {
             return _context.Messages.Any(e => e.PostId == id);
         }
+
+
     }
 }
