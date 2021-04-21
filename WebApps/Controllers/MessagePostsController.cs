@@ -34,6 +34,7 @@ namespace WebApps.Controllers
             }
 
             var messagePost = await _context.Messages
+                .Include(c => c.Comments)
                 .FirstOrDefaultAsync(m => m.PostId == id);
             if (messagePost == null)
             {

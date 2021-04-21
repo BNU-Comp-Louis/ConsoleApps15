@@ -34,6 +34,7 @@ namespace WebApps.Controllers
             }
 
             var photoPost = await _context.Photos
+                .Include(c => c.Comments)
                 .FirstOrDefaultAsync(m => m.PostId == id);
             if (photoPost == null)
             {

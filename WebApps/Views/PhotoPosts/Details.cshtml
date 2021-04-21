@@ -48,22 +48,15 @@
     </dl>
 </div>
 <div>
-    <h4>Comments</h4>
-    @if(Model.Comments == null || Model.Comments.Count() == 0)
-    {
-                <p>
-                    No Comments have been posted yet
-                </p>
+    @if (Model.Comments == null || Model.Comments.Count()==0)
+            {
+                <p>No comments have been posted yet!</p>
     }
     else
     {
-        
-        foreach(Comment comment in Model.Comments)
-        {
-           
-                    <p>
-                        @comment.Text 
-                    </p>
+        foreach (Comment comment in Model.Comments)
+                {
+                    <p>@comment.Text</p>
                 }
     }
 </div>

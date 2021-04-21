@@ -46,12 +46,12 @@
     }
     else
     {
-        int count = 0;
+        
         foreach (Comment comment in Model.Comments)
         {
-            count++;
+            
             <p>
-                @count. @comment.Text
+                @comment.Text
             </p>
         }
     }
