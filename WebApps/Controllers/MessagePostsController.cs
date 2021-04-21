@@ -175,8 +175,37 @@ namespace WebApps.Controllers
 
             return RedirectToAction("Details", new { id = id });
         }
-          
 
+        public ActionResult UnLike(int id)
+        {
+            var messagePost = _context.Messages.Find(id);
+
+            if (messagePost == null)
+            {
+                return NotFound();
+            }
+
+            messagePost.Unlike();
+
+            try
+            {
+                _context.Update(messagePost);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MessagePostExists(messagePost.PostId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Details", new { id = id });
+        }
 
         private bool MessagePostExists(int id)
         {
